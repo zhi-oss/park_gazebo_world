@@ -1,0 +1,9 @@
+<launch>
+  <!-- 启动Gazebo服务 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- 指定世界模型文件 -->
+    <arg name="world_name" value="$(find park_gazebo)/worlds/mt_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+</launch>

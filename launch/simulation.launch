@@ -1,0 +1,18 @@
+<launch>
+  <!-- 启动Gazebo服务 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- 指定世界模型文件 -->
+    <arg name="world_name" value="$(find park_gazebo)/worlds/park_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+  <!-- 加载机器人模型到参数服务器 -->
+  <param name="robot_description" 
+    command="$(find xacro)/xacro '$(find park_gazebo)/robots/go1_description/xacro/robot.xacro'"/> // 模型文件路径
+
+  <!-- 将模型生成到Gazebo中 -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+        args="-param robot_description -urdf -model your_robot_name"
+        output="screen"/>
+</launch>
